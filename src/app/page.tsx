@@ -21,59 +21,59 @@ export default function Home() {
     });
   };
 
-  const rederStep = (step: number) => {
-    switch (step) {
-      case 0:
-        return (
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={data.name}
-              onChange={handleChange}
-            />
-          </label>
-        );
-      case 1:
-        return (
-          <label>
-            Email:
-            <input
-              type="text"
-              name="email"
-              value={data.email}
-              onChange={handleChange}
-            />
-            ;
-          </label>
-        );
-      case 2:
-        return (
-          <label>
-            Password:
-            <input
-              type="text"
-              name="password"
-              value={data.password}
-              onChange={handleChange}
-            />
-          </label>
-        );
-      default:
-        return (
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={data.name}
-              onChange={handleChange}
-            />
-          </label>
-        );
-    }
-  };
+  // const rederStep = (step: number) => {
+  //   switch (step) {
+  //     case 0:
+  //       return (
+  //         <label>
+  //           Name:
+  //           <input
+  //             type="text"
+  //             name="name"
+  //             value={data.name}
+  //             onChange={handleChange}
+  //           />
+  //         </label>
+  //       );
+  //     case 1:
+  //       return (
+  //         <label>
+  //           Email:
+  //           <input
+  //             type="text"
+  //             name="email"
+  //             value={data.email}
+  //             onChange={handleChange}
+  //           />
+  //           ;
+  //         </label>
+  //       );
+  //     case 2:
+  //       return (
+  //         <label>
+  //           Password:
+  //           <input
+  //             type="text"
+  //             name="password"
+  //             value={data.password}
+  //             onChange={handleChange}
+  //           />
+  //         </label>
+  //       );
+  //     default:
+  //       return (
+  //         <label>
+  //           Name:
+  //           <input
+  //             type="text"
+  //             name="name"
+  //             value={data.name}
+  //             onChange={handleChange}
+  //           />
+  //         </label>
+  //       );
+  //   }
+  // };
 
   const nextStep = () => {
     setStep(step + 1);
