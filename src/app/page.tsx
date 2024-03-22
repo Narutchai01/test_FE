@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import RenderStep from "./RenderStep";
 
 export default function Home() {
   const [step, setStep] = useState(0);
@@ -91,7 +92,6 @@ export default function Home() {
 
   return (
     <>
-      <h1>{step}</h1>
       <Box sx={{ width: "100%" }}>
         <Stepper activeStep={step} alternativeLabel>
           {steps.map((label) => (
@@ -102,7 +102,7 @@ export default function Home() {
         </Stepper>
       </Box>
       <form onSubmit={handleSubmit}>
-        {rederStep(step)}
+      <RenderStep step={step} data={data} handleChange={handleChange} />
         {step === 2 ? (
           <button type="submit">Submit</button>
         ) : (
