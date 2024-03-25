@@ -12,6 +12,7 @@ export default function Home() {
     name: "",
     email: "",
     password: "",
+    age : 0,
   });
 
   const handleChange = (e: any) => {
@@ -21,6 +22,7 @@ export default function Home() {
     });
   };
 
+   
   // const rederStep = (step: number) => {
   //   switch (step) {
   //     case 0:

@@ -6,44 +6,64 @@ interface RenderStepProps {
     handleChange: React.ChangeEventHandler;
 }
 
+
+const Step1 : React.FC<RenderStepProps> = ({ data, handleChange }) => {
+    return (
+        <label>
+            Name:
+            <input
+                type="text"
+                name="name"
+                value={data.name}
+                onChange={handleChange}
+            />
+        </label>
+    );
+}
+
+const Step2 : React.FC<RenderStepProps> = ({ data, handleChange }) => {
+    return (
+        <label>
+            Email:
+            <input
+                type="text"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+            />
+            
+        </label>
+    );
+};
+
+
+const Step3 : React.FC<RenderStepProps> = ({ data, handleChange }) => {
+    return (
+        <label>
+            Password:
+            <input
+                type="text"
+                name="password"
+                value={data.password}
+                onChange={handleChange}
+            />
+        </label>
+    );
+};
+
 const RenderStep: React.FC<RenderStepProps> = ({ step ,data , handleChange}) => {
     switch (step) {
         case 0:
             return (
-                <label>
-                    Name:
-                    <input
-                        type="text"
-                        name="name"
-                        value={data.name}
-                        onChange={handleChange}
-                    />
-                </label>
+                <Step1 step={step} data={data} handleChange={handleChange} />
             );
         case 1:
             return (
-                <label>
-                    Email:
-                    <input
-                        type="text"
-                        name="email"
-                        value={data.email}
-                        onChange={handleChange}
-                    />
-                    ;
-                </label>
+                <Step2 step={step} data={data} handleChange={handleChange} />
             );
         case 2:
             return (
-                <label>
-                    Password:
-                    <input
-                        type="text"
-                        name="password"
-                        value={data.password}
-                        onChange={handleChange}
-                    />
-                </label>
+                <Step3 step={step} data={data} handleChange={handleChange} />
             );
         default:
             return null;
