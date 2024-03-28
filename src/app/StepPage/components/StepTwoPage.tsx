@@ -4,25 +4,29 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Controller, set } from "react-hook-form";
 import { DateField } from "@mui/x-date-pickers";
+import { useContext } from "react";
+import { DataContext } from "./addCard";
 
-interface StepTwoPageProps {
-  register: any;
-  setValue: any;
-}
 
-const StepTwoPage: React.FC<StepTwoPageProps> = ({ register ,setValue }) => {
+const StepTwoPage = () => {
+  const {control, setValue } = useContext(DataContext);
   return (
     <>
       <label>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label="Date"
-            // {...register("date")}
-            onChange={(newValue) => {
-              setValue("date", newValue);
-            }}
-          />
-        </LocalizationProvider>
+       <Controller
+          name="date"
+          control={control}
+          defaultValue={null}
+          render={({ field }) => (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                {...field}
+                label="Date"
+                onChange={(newValue) => setValue("date", newValue)}
+              />
+            </LocalizationProvider>
+          )}
+        /> 
       </label>
     </>
   );

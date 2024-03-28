@@ -2,22 +2,21 @@ import React from "react";
 import StepOnePage from "./StepOnepage";
 import StepTwoPage from "./StepTwoPage";
 import StepThreePage from "./StepThreePage";
+import { useContext } from "react";
+import { DataContext } from "./addCard";
 
 
-interface RenderStepProps {
-  step: number;
-  register: any;
-  setValue?: any;
-}
 
-const RenderStep: React.FC<RenderStepProps> = ({ step, register ,setValue}) => {
+
+const RenderStep = () => {
+  const { step } = useContext(DataContext);
   switch (step) {
     case 0:
-      return <StepOnePage register={register} />;
+      return <StepOnePage />;
     case 1:
-      return <StepTwoPage register={register}  setValue={setValue}/>;
+      return <StepTwoPage />;
     case 2:
-      return <StepThreePage register={register} />;
+      return <StepThreePage />;
   }
 };
 

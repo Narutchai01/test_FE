@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -8,6 +8,7 @@ import StepLabel from "@mui/material/StepLabel";
 import RenderStep from "./RenderStep";
 import dayjs from "dayjs";
 
+export const DataContext = createContext<any>({});
 interface IFormInput {
   firstName: string;
   date: any;
@@ -17,7 +18,7 @@ const AddCard = () => {
   const [step, setStep] = useState(0);
   const [age, setAge] = useState(0);
 
-  const { register, handleSubmit ,watch ,setValue} = useForm<IFormInput>();
+  const { handleSubmit, watch, setValue ,control} = useForm<IFormInput>();
 
   const steps = [
     "Select master blaster campaign settings",
@@ -25,21 +26,29 @@ const AddCard = () => {
     "Create an ad",
   ];
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
 
   const nextStep = () => {
     setStep(step + 1);
   };
 
-  const date = watch("date")
+  const date = watch("date");
 
-  const calculate = (date:any) =>{
+  const calculate = (date: any) => {
     const now = dayjs();
-    return `${now.diff(date,"year")}`
+    return `${now.diff(date, "year")}`;
+  };
+
+
+  const conTextValue = {
+    step,
+    calculate,
+    date,
+    setValue,
+    control
   }
 
-
-  
   return (
     <>
       <h1>{step}</h1>
@@ -53,20 +62,22 @@ const AddCard = () => {
       </Stepper>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <RenderStep step={step} register={register} setValue={setValue} />
-        {step === 2 ? (
-          <button type="submit">Submit</button>
-        ) : (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              nextStep();
-            }}
-          >
-            Next
-          </button>
-        )}
+        <DataContext.Provider value={conTextValue}>
+          <RenderStep />
+          {step === 2 ? (
+            <button type="submit">Submit</button>
+          ) : (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                nextStep();
+              }}
+            >
+              Next
+            </button>
+          )}
+        </DataContext.Provider>
       </form>
     </>
   );

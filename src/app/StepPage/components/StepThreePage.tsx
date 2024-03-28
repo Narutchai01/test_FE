@@ -1,20 +1,29 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { DataContext } from "./addCard";
+import { Controller } from "react-hook-form";
+import TextField from "@mui/material/TextField";
 
+const StepThreePage = () => {
+  const { control } = useContext(DataContext);
 
-
-interface StepThreePageProps {
-  register: any;
+  return (
+    <>
+      <Controller
+        name="lastName"
+        defaultValue=""
+        control={control}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label="Last Name"
+            variant="standard"
+            fullWidth
+            margin="normal"
+          />
+        )}
+      />
+    </>
+  );
 };
 
-const StepThreePage :React.FC<StepThreePageProps> = ({register}) => {
-  return (
-  <>
-      <label>
-        age
-        <input type="number" {...register("age")} />
-      </label>
-    </>
-  )
-}
-
-export default StepThreePage
+export default StepThreePage;
